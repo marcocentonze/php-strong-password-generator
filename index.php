@@ -1,5 +1,50 @@
 <?php
+//inizializzo l'array
+$generatedPassword = null;
 
+//faccio un check su lenght e se è vero...
+if (isset($_GET['length'])) {
+    $passwordLength = $_GET['length'];
+
+    // caratteri scelti dall'utente
+    $lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    $uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $numberChars = '0123456789';
+    $symbolChars = '!@#$%^&*()-_=+[]{}/\|.:,;\'"`~<>^';
+
+    //caratteri con lettere minuscole
+    // $allChars = $lowercaseChars;
+    
+    //inizializzo allChars ma non c'è bisogno su php
+    // $allChars = '';
+
+    // personalizzazione dei checkbox(prede i valori che ho messo nel name)
+    if (isset($_GET['lowercase'])) {
+        $allChars .= $lowercaseChars;
+    }
+    if (isset($_GET['uppercase'])) {
+        $allChars .= $uppercaseChars;
+    }
+    if (isset($_GET['numbers'])) {
+        $allChars .= $numberChars;
+    }
+    if (isset($_GET['symbols'])) {
+        $allChars .= $symbolChars;
+    }
+     //chiamo la funzione
+    $generatedPassword = generateRandomPassword($passwordLength, $allChars);
+}
+
+function generateRandomPassword($length,$allChars)
+{
+    $generatedPassword = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $generatedPassword .= $allChars[rand(0, strlen($allChars) - 1)];
+    }
+
+    return $generatedPassword;
+}
 
 
 
@@ -36,7 +81,7 @@
                             <input type="number" class="form-control" name="length" id="characterCount" min="1" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-check-label">Personalize your password:</label>
+                            <h6>Personalize your password:</h6>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="lowercase" id="lowercase">
                                 <label for="lowercase" class="form-check-label">Lowercase letters</label>
@@ -57,7 +102,7 @@
                         <button type="submit" class="btn btn-primary">Generate Password</button>
                     </form>
                 </div>
-
+                <h4 class="text-center">Result : <?= $generatedPassword ?></h4>
 
             </div>
 
