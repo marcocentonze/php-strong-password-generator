@@ -30,20 +30,39 @@
                 <h2 class="text-danger text-center">Generate a safe password</h2>
 
                 <div class="col border rounded-3 py-3 d-flex justify-content-center">
-                    <form>
+                    <form method="get">
                         <div class="mb-3">
-                            <label for="characters" class="form-label">How many characters should your password contain?</label>
-                            <input type="number" class="form-control" name="characters" id="characters" aria-describedby="helpId" min="8" max="30">
-                            <small id="characters" class="form-text text-muted">The entered value must be a number between 8 and 30</small>
+                            <label for="characterCount" class="form-label">Password Length:</label>
+                            <input type="number" class="form-control" name="length" id="characterCount" min="1" required>
                         </div>
-                        <button class="btn btn-primary" type="submit">Generate</button>
-
-
-
+                        <div class="mb-3">
+                            <label class="form-check-label">Personalize your password:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="lowercase" id="lowercase">
+                                <label for="lowercase" class="form-check-label">Lowercase letters</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="uppercase" id="uppercase">
+                                <label for="uppercase" class="form-check-label">Uppercase letters</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="numbers" id="numbers">
+                                <label for="numbers" class="form-check-label">Numbers</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symbols" id="symbols">
+                                <label for="symbols" class="form-check-label">Symbols</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Generate Password</button>
+                    </form>
                 </div>
 
+
             </div>
+
         </div>
+       
 
     </main>
 
