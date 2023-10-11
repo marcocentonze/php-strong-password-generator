@@ -1,4 +1,6 @@
 <?php
+include __DIR__ . '/functions.php';
+
 //inizializzo l'array
 $generatedPassword = null;
 
@@ -12,11 +14,6 @@ if (isset($_GET['length'])) {
     $numberChars = '0123456789';
     $symbolChars = '!@#$%^&*()-_=+[]{}/\|.:,;\'"`~<>^';
 
-    //caratteri con lettere minuscole
-    // $allChars = $lowercaseChars;
-    
-    //inizializzo allChars ma non c'è bisogno su php
-    // $allChars = '';
 
     // personalizzazione dei checkbox(prede i valori che ho messo nel name)
     if (isset($_GET['lowercase'])) {
@@ -35,16 +32,6 @@ if (isset($_GET['length'])) {
     $generatedPassword = generateRandomPassword($passwordLength, $allChars);
 }
 
-function generateRandomPassword($length,$allChars)
-{
-    $generatedPassword = '';
-
-    for ($i = 0; $i < $length; $i++) {
-        $generatedPassword .= $allChars[rand(0, strlen($allChars) - 1)];
-    }
-
-    return $generatedPassword;
-}
 
 
 
@@ -102,7 +89,7 @@ function generateRandomPassword($length,$allChars)
                         <button type="submit" class="btn btn-primary">Generate Password</button>
                     </form>
                 </div>
-                <h4 class="text-center">Result : <?= $generatedPassword ?></h4>
+                <h4 class="text-center">Your safe password is : <?= $generatedPassword ?></h4>
 
             </div>
 
